@@ -1,0 +1,68 @@
+Utilice Nominatim Por cuestiones de que no me deja usar la api de google debido a la facturacion,
+ pero utilice Nominatim ya que es gratuito y no necesito facturacion par aque funcione
+
+ instrucciones:
+
+ correr por consola estos dos comandos
+
+ 1.-  python main.py 
+ Para correr el corazon del programa ya que tengo una estructura de microoservicios obviamente sin el
+ Cubernete que se debe poner con docker
+
+ 2.- curl http://127.0.0.1:5002/hospital_mas_cercano este se ejecuta en una terminal aparte para hacer funcionar el proyecto
+
+ una vez ejecutado te dara la ubicacion del hospital mas cercano a tu ubicacion actual
+ en el log de la terminal te saldra algo asi
+ StatusCode        : 200
+StatusDescription : OK
+Content           : {"distancia_km":0.1396670280242823,"punto_cercano":"Clinica CIME, Avenida Magdalena, Insurgentes San Borja, Ciudad de      
+                    M\u00e9xico, Benito Ju\u00e1rez, Ciudad de M\u00e9xico, 03100, M\u00e9xico"}   <------ este es la respueta
+
+RawContent        : HTTP/1.1 200 OK
+                    Connection: close
+                    Content-Length: 195
+                    Content-Type: application/json
+                    Date: Fri, 01 Aug 2025 20:39:26 GMT
+                    Server: Werkzeug/3.1.3 Python/3.10.11
+
+                    {"distancia_km":0.139667028024282...
+Forms             : {}
+Headers           : {[Connection, close], [Content-Length, 195], [Content-Type, application/json], [Date, Fri, 01 Aug 2025 20:39:26 GMT]...}   
+Images            : {}
+InputFields       : {}
+Links             : {}
+ParsedHtml        : mshtml.HTMLDocumentClass
+RawContentLength  : 195
+
+
+una vez ya ejecutado te dara la respuesta tanto ahi como tambien en la terminal de main.py
+
+*Recurda que se ejecutan en 2 terminales distintas.*
+
+
+este es el otro resultado
+
+Calculando coordenadas del accidente...
+127.0.0.1 - - [01/Aug/2025 14:39:23] "POST /calculate_destination HTTP/1.1" 200 -
+Coordenadas del accidente calculadas: (19.390945819981997, -99.172805)
+Buscando con Nominatim (timeout de 10 segundos)...
+Nominatim encontró 10 posibles ubicaciones.
+Ubicación encontrada: Clinica CIME, Avenida Magdalena, Insurgentes San Borja, Ciudad de México, Benito Juárez, Ciudad de México, 03100, México, Distancia: 0.14 km
+Ubicación encontrada: Calle Nueva York, Colonia Nápoles, Ciudad de México, Benito Juárez, Ciudad de México, 03810, México, Distancia: 0.57 km  
+Ubicación encontrada: Hospital Star Médica Hip, 97, Viaducto Río Becerra, Colonia Nápoles, Ciudad de México, Benito Juárez, Ciudad de México, 03810, México, Distancia: 0.91 km
+Ubicación encontrada: Hospital de Mexico, 208, Calle Mutualismo, Escandón 2ª Sección, Ciudad de México, Miguel Hidalgo, Ciudad de México, 11800, México, Distancia: 1.00 km
+Ubicación encontrada: Clinica Centro Médico del Valle, 942, Calle Manuel López Cotilla, Colonia Del Valle Centro, Ciudad de México, Benito Juárez, Ciudad de México, 03100, México, Distancia: 1.09 km
+Ubicación encontrada: Calle Nicolás San Juan, Colonia Narvarte Poniente, Ciudad de México, Benito Juárez, Ciudad de México, 03103, México, Distancia: 1.27 km
+Ubicación encontrada: Hospital general regional no. 1, Gabriel Mancera, Colonia Del Valle, Ciudad de México, Benito Juárez, Ciudad de México, 03103, México, Distancia: 1.29 km
+Ubicación encontrada: Clinica Salvati, 256, Avenida San Antonio, Mixcoac, Ciudad de México, Benito Juárez, Ciudad de México, 03849, México, Distancia: 1.30 km
+Ubicación encontrada: 1ro de Mayo, Avenida 1º de Mayo, Unidad Habitacional 8 de Agosto, Ciudad de México, Benito Juárez, Ciudad de México, 03800, México, Distancia: 1.52 km
+Ubicación encontrada: Hospital Ángeles Dalinde, Avenida Insurgentes Sur, Roma Sur, Ciudad de México, Cuauhtémoc, Ciudad de México, 06760, México, Distancia: 1.68 km
+Se encontraron 10 hospitales dentro del radio de 5km.
+127.0.0.1 - - [01/Aug/2025 14:39:26] "POST /find_nearest HTTP/1.1" 200 -
+127.0.0.1 - - [01/Aug/2025 14:39:26] "GET /hospital_mas_cercano HTTP/1.1" 200 -
+
+Deteniendo servicios...
+Servicios detenidos.
+
+
+Te da todos los Hospitales con sus distancias y nombres de la ubicacion que me dieron
